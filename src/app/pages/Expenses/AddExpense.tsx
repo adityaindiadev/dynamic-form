@@ -1,7 +1,9 @@
 "use client";
 
 import Loader from "@/app/componants/Loader/page";
+import Modal from "@/app/componants/Modal";
 import DropDown from "@/app/componants/ui-componants/DropDown";
+import TextInput from "@/app/componants/ui-componants/TextInput";
 import ApiCaller from "@/app/utils/ApiCaller/ApiCaller";
 import Constants from "@/app/utils/Constants";
 import Image from "next/image";
@@ -35,6 +37,9 @@ export default function AddExpense() {
     const [selectedExpenseCategory, setSelectedExpenseCategory] = useState<SelectedExpenseCategoryProps>(initialSelectedExpenseCategoryProps);
     const [expenseCategories, setExpenseCategories] = useState<any>([]);
 
+    const [showModal, setShowModal] = useState(false);
+
+
     useEffect(() => {
 
         initiateAPIs()
@@ -66,7 +71,7 @@ export default function AddExpense() {
         let responseJson = await ApiCaller.getData(endPoint)
         console.log("getAddExpenseData", responseJson)
 
-   
+
 
         setExpenseCategories(responseJson)
 
@@ -88,9 +93,20 @@ export default function AddExpense() {
     return (
         <>
             <Loader isLoading={isLoading} />
-            {/* <main className="flex min-h-screen flex-col items-center justify-between p-24"> */}
-            <DropDown itemArr={expenseCategories} value={(item)=>item?.expenseName} keyExtractor={(item)=>item?.expenseTemplateCategoryId} onSelect={(item)=>setSelectedExpenseCategory(item)} selectedValue ={selectedExpenseCategory.expenseName}/>
-            {/* </main> */}
+            <main className="flex min-h-screen flex-col items-center  p-15">
+                <TextInput title="Expense Title" placeholder="Enter Expense" />
+                <TextInput title="Advance" placeholder="Enter Advance" />
+                <button type="submit" className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg className="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd"></path></svg>
+                    Add new product
+                </button>
+                <DropDown itemArr={expenseCategories} value={(item) => item?.expenseName} keyExtractor={(item, index) => String(index)} onSelect={(item) => setSelectedExpenseCategory(item)} selectedValue={selectedExpenseCategory.expenseName} />
+
+               
+
+
+
+            </main>
 
 
 
