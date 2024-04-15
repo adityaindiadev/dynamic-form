@@ -1,9 +1,9 @@
 "use client";
 
-import Loader from "@/app/componants/Loader/page";
-import Modal from "@/app/componants/Modal";
-import DropDown from "@/app/componants/ui-componants/DropDown";
-import TextInput from "@/app/componants/ui-componants/TextInput";
+import Loader from "@/components/ui/Loader/page";
+import CustomModal from "@/components/ui/CustomModal";
+import DropDown from "@/components/ui/DropDown";
+import TextInput from "@/components/ui/TextInput";
 import ApiCaller from "@/app/utils/ApiCaller/ApiCaller";
 import Constants from "@/app/utils/Constants";
 import Image from "next/image";

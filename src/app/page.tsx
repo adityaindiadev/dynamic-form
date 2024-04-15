@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Loader from "./componants/Loader/page";
+import Loader from "../components/ui/Loader/page";
 import Constants from "./utils/Constants";
-import AddExpense from "./pages/Expenses/AddExpense";
+import AddExpense from "../components/Modules/Expenses/AddExpense";
 
 
 

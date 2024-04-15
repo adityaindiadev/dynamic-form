@@ -49,7 +49,7 @@ const DropDown: React.FC<DropDownProps> = ({ placeholder = "Select Option",
                 <option className='text-opacity-0' value={"null"}>
                     {placeholder}
                 </option>
-                {itemArr.map((item, index) => (
+                {itemArr?.map((item, index) => (
                     <option key={keyExtractor(item, index)} value={value(item)}>
                         {value(item)}
                     </option>

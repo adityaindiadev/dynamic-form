@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 
 
-const Modal = ({ onClose=()=>{}, children=<></>, title='' }) => {
+const CustomModal = ({ onClose=()=>{}, children=<></>, title='' }) => {
     const handleCloseClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
         onClose();
@@ -33,4 +33,4 @@ const Modal = ({ onClose=()=>{}, children=<></>, title='' }) => {
     );
 };
 
-export default Modal
+export default CustomModal
