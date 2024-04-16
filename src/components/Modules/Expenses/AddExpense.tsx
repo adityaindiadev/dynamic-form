@@ -3,13 +3,15 @@
 import Loader from "@/components/ui/Loader/page";
 import CustomModal from "@/components/ui/CustomModal";
 import DropDown from "@/components/ui/DropDown";
-import TextInput from "@/components/ui/TextInput";
+import MyTextInput, { MyInputContainer } from "@/components/ui/TextInput";
 import ApiCaller from "@/app/utils/ApiCaller/ApiCaller";
 import Constants from "@/app/utils/Constants";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button"
 import { ComboboxDemo } from "@/components/ui/ComboBox";
+import { DialogDemo } from "@/components/ui/DialogDemo";
+import MyModal from "@/components/ui/MyModal";
 
 
 interface SelectedExpenseCategoryProps {
@@ -37,6 +39,7 @@ const initialSelectedExpenseCategoryProps: SelectedExpenseCategoryProps = {
 export default function AddExpense() {
 
     const [isLoading, setIsLoading] = useState(false)
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const [selectedExpenseCategory, setSelectedExpenseCategory] = useState<SelectedExpenseCategoryProps>(initialSelectedExpenseCategoryProps);
     const [expenseCategories, setExpenseCategories] = useState<any>([]);
 
@@ -96,18 +99,27 @@ export default function AddExpense() {
 
     }
 
+
     return (
         <>
             <Loader isLoading={isLoading} />
             <main className="flex min-h-screen flex-col items-center  p-15">
-                <TextInput title="Expense Title" placeholder="Enter Expense" />
-               {isShowAdvanceAmount && <TextInput title="Advance" placeholder="Enter Advance" /> }
-                <Button>Click me</Button>
+                <MyInputContainer>
+                    <>
+                        <MyTextInput label="Expense Title" placeholder="Enter Expense" />
+                        {isShowAdvanceAmount && <MyTextInput label="Advance" placeholder="Enter Advance" />}
+                        
+
+                    </>
+                </MyInputContainer>
+                <Button onClick={() => setIsOpenModal(true)} >Add Expense</Button>
 
                 <DropDown itemArr={expenseCategories} value={(item) => item?.expenseName} keyExtractor={(item, index) => String(index)} onSelect={(item) => setSelectedExpenseCategory(item)} selectedValue={selectedExpenseCategory.expenseName} />
 
-            <ComboboxDemo/>
-               
+                <MyModal open={isOpenModal} setOpen={setIsOpenModal}>
+                    <MyTextInput label="Expense Title" placeholder="Enter Expense" />
+                </MyModal>
+
 
 
 
