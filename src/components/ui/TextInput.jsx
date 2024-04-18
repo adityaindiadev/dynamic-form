@@ -2,25 +2,25 @@ import { Label } from '@radix-ui/react-label'
 import { Input } from "@/components/ui/input"
 import React from 'react'
 
-interface MyTextInputProps {
-    placeholder?: string
-    label?: string
-    onInput?: (value: string) => null
-    value?: string;
-    id?: string
-}
+// interface MyTextInputProps {
+//     placeholder?: string
+//     label?: string
+//     onInput?: (value: string) => null
+//     value?: string;
+//     id?: string
+// }
 
-interface MyInputContainerProps {
-    children: React.ReactNode
-}
+// interface MyInputContainerProps {
+//     children: React.ReactNode
+// }
 
-export function MyInputContainer<MyInputContainerProps>({ children = <></> }) {
+export function MyInputContainer({ children = <></> }) {
     return <div className="grid gap-4 py-4">{children}</div>
 }
 
-export default function MyTextInput<TextInputProps>({ placeholder = "Enter Value", label = "Enter Value", onInput = (value: string) => { }, value = "", id = "" }) {
+export default function MyTextInput({ placeholder = "Enter Value", label = "Enter Value", onInput = () => { }, value = "", id = "" }) {
 
-    function handleInput(event: React.FormEvent<HTMLInputElement>) {
+    function handleInput(event) {
 
         const value = event.currentTarget.value
 
